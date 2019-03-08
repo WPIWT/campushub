@@ -7,12 +7,21 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Button,
 } from 'react-native';
 import { WebBrowser } from 'expo';
+import { createStackNavigator, createAppContainer } from 'react-navigation'; 
 
-import { MonoText } from '../components/StyledText';
+
+import Category from '../components/news/Category';
+import LinksScreen from './LinksScreen';
 
 export default class HomeScreen extends React.Component {
+
+  _onPress() {
+    Alert.alert('on Press!');
+  }
+
   static navigationOptions = {
     header: null,
   };
@@ -20,49 +29,83 @@ export default class HomeScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-          <View style={styles.welcomeContainer}>
-            <Image
-              source={
-                __DEV__
-                  ? require('../assets/images/robot-dev.png')
-                  : require('../assets/images/robot-prod.png')
-              }
-              style={styles.welcomeImage}
-            />
-          </View>
 
-          <View style={styles.getStartedContainer}>
-            {this._maybeRenderDevelopmentModeWarning()}
+        <View style={{ height: 130, marginTop: 80 }}>
+          <ScrollView
+            horizontal={true}>
+            <Category
+              imageUri={require('../assets/images/robot-dev.png')}
+              name="Robot">
+            </Category>
+            <Category
+              imageUri={require('../assets/images/robot-dev.png')}
+              name="Robot 1">
+            </Category>
+            <Category
+              imageUri={require('../assets/images/robot-dev.png')}
+              name="Robot 2">
+            </Category>
+            <Category
+              imageUri={require('../assets/images/robot-dev.png')}
+              name="Robot 3">
+            </Category>
+            <Category
+              imageUri={require('../assets/images/robot-dev.png')}
+              name="Robot 4">
+            </Category>
+          </ScrollView>
+        </View>
 
-            <Text style={styles.getStartedText}>Get started by opening</Text>
-
-            <View style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
-              <MonoText style={styles.codeHighlightText}>screens/HomeScreen.js</MonoText>
+        <ScrollView>
+        
+          <View style={styles.button}>
+            <View style={styles.buttonContainer}>
+              <Button onPress={this._onPress} title="Button 1" color="#FFFFFF" accessibilityLabel="Tap on Me" />
             </View>
-
-            <Text style={styles.getStartedText}>
-              Change this text and your app will automatically reload.
-            </Text>
+            <View style={styles.buttonContainer}>
+              <Button onPress={this._onPress} title="Button 2" color="#FFFFFF" accessibilityLabel="Tap on Me" />
+            </View>
+            <View style={styles.buttonContainer}>
+              <Button onPress={this._onPress} title="Button 3" color="#FFFFFF" accessibilityLabel="Tap on Me" />
+            </View>
           </View>
 
-          <View style={styles.helpContainer}>
-            <TouchableOpacity onPress={this._handleHelpPress} style={styles.helpLink}>
-              <Text style={styles.helpLinkText}>Help, it didn’t automatically reload!</Text>
-            </TouchableOpacity>
+          <View style={styles.button}>
+            <View style={styles.buttonContainer}>
+              <Button onPress={this._onPress} title="Button 4" color="#FFFFFF" accessibilityLabel="Tap on Me" />
+            </View>
+            <View style={styles.buttonContainer}>
+              <Button onPress={this._onPress} title="Button 5" color="#FFFFFF" accessibilityLabel="Tap on Me" />
+            </View>
+            <View style={styles.buttonContainer}>
+              <Button onPress={this._onPress} title="Button 6" color="#FFFFFF" accessibilityLabel="Tap on Me" />
+            </View>
           </View>
+
+          <View style={styles.button}>
+            <View style={styles.buttonContainer}>
+              <Button onPress={this._onPress} title="Button 7" color="#FFFFFF" accessibilityLabel="Tap on Me" />
+            </View>
+            <View style={styles.buttonContainer}>
+              <Button onPress={this._onPress} title="Button 8" color="#FFFFFF" accessibilityLabel="Tap on Me" />
+            </View>
+            <View style={styles.buttonContainer}>
+            <Button
+              onPress={() => this.props.navigation.navigate('Links')} title="Button 9" color="#FFFFFF" accessibilityLabel="Tap on Me"/>
+            </View>
+          </View>
+
         </ScrollView>
 
-        <View style={styles.tabBarInfoContainer}>
-          <Text style={styles.tabBarInfoText}>This is a tab bar. You can edit it in:</Text>
 
-          <View style={[styles.codeHighlightContainer, styles.navigationFilename]}>
-            <MonoText style={styles.codeHighlightText}>navigation/MainTabNavigator.js</MonoText>
-          </View>
+        <View style={styles.tabBarInfoContainer}>
+          <Text style={[styles.tabBarInfoText, styles.navigationFilename]}>WPI</Text>
         </View>
-      </View>
+      </View >
+
     );
   }
+  
 
   _maybeRenderDevelopmentModeWarning() {
     if (__DEV__) {
@@ -98,10 +141,47 @@ export default class HomeScreen extends React.Component {
   };
 }
 
+const RootStack = createStackNavigator(
+  {
+    Home: HomeScreen,
+    Links: LinksScreen,
+  },
+  {
+    initialRouteName: 'Home',
+  }
+);
+
+
+const AppContainer = createAppContainer(RootStack);
+
+class App extends React.Component {
+  render() {
+    return <AppContainer />;
+  }
+}
+
+
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+  },
+  button: {
+    flex: 1,
+    marginTop: 20,
+    marginLeft: 20,
+    marginRight: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  buttonContainer: {
+    backgroundColor: '#AC2B37',
+    borderRadius: 10,
+    width: 100,
+    height: 100,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   developmentModeText: {
     marginBottom: 20,
@@ -132,14 +212,6 @@ const styles = StyleSheet.create({
   homeScreenFilename: {
     marginVertical: 7,
   },
-  codeHighlightText: {
-    color: 'rgba(96,100,109, 0.8)',
-  },
-  codeHighlightContainer: {
-    backgroundColor: 'rgba(0,0,0,0.05)',
-    borderRadius: 3,
-    paddingHorizontal: 4,
-  },
   getStartedText: {
     fontSize: 17,
     color: 'rgba(96,100,109, 1)',
@@ -148,12 +220,12 @@ const styles = StyleSheet.create({
   },
   tabBarInfoContainer: {
     position: 'absolute',
-    bottom: 0,
+    top: 0,
     left: 0,
     right: 0,
     ...Platform.select({
       ios: {
-        shadowColor: 'black',
+        shadowColor: 'white',
         shadowOffset: { height: -3 },
         shadowOpacity: 0.1,
         shadowRadius: 3,
@@ -163,16 +235,18 @@ const styles = StyleSheet.create({
       },
     }),
     alignItems: 'center',
-    backgroundColor: '#fbfbfb',
-    paddingVertical: 20,
+    backgroundColor: '#AC2B37',
+    paddingVertical: 0,
+
   },
   tabBarInfoText: {
-    fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
+    fontSize: 35,
+    color: '#fff',
     textAlign: 'center',
+    fontFamily: 'MinionPro-BoldDisp',
   },
   navigationFilename: {
-    marginTop: 5,
+    marginTop: 20,
   },
   helpContainer: {
     marginTop: 15,
