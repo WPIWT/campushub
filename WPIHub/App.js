@@ -7,7 +7,6 @@ export default class App extends React.Component {
   state = {
     isLoadingComplete: false,
   };
-
   render() {
     if (!this.state.isLoadingComplete && !this.props.skipLoadingScreen) {
       return (
@@ -40,6 +39,7 @@ export default class App extends React.Component {
         // to remove this if you are not using it in your app
         'space-mono': require('./assets/fonts/SpaceMono-Regular.ttf'),
         'MinionPro-BoldDisp': require('./assets/fonts/MinionPro-BoldDisp.ttf'),
+        'MyriadPro-Light': require('./assets/fonts/MyriadPro-Light.ttf'),
       }),
     ]);
   };

@@ -5,16 +5,20 @@ import {
   ScrollView,
   StyleSheet,
   Text,
-  TouchableOpacity,
   View,
   Button,
 } from 'react-native';
-import { WebBrowser } from 'expo';
-import { createStackNavigator, createAppContainer } from 'react-navigation'; 
+
+import { createStackNavigator, createAppContainer } from 'react-navigation';
+import { FontAwesome } from '@expo/vector-icons'; 
+import { Feather } from '@expo/vector-icons'; 
+import { MaterialIcons } from '@expo/vector-icons'; 
+import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 
 
 import Category from '../components/news/Category';
 import LinksScreen from './LinksScreen';
+import DiningScreen from './DiningScreen';
 
 export default class HomeScreen extends React.Component {
 
@@ -28,139 +32,137 @@ export default class HomeScreen extends React.Component {
 
   render() {
     return (
+       
       <View style={styles.container}>
-
-        <View style={{ height: 130, marginTop: 80 }}>
-          <ScrollView
-            horizontal={true}>
-            <Category
-              imageUri={require('../assets/images/robot-dev.png')}
-              name="Robot">
-            </Category>
-            <Category
-              imageUri={require('../assets/images/robot-dev.png')}
-              name="Robot 1">
-            </Category>
-            <Category
-              imageUri={require('../assets/images/robot-dev.png')}
-              name="Robot 2">
-            </Category>
-            <Category
-              imageUri={require('../assets/images/robot-dev.png')}
-              name="Robot 3">
-            </Category>
-            <Category
-              imageUri={require('../assets/images/robot-dev.png')}
-              name="Robot 4">
-            </Category>
-          </ScrollView>
-        </View>
-
         <ScrollView>
+          <View style={{ height: 130, marginTop: 100 }}>
+            <ScrollView
+              horizontal={true}>
+              <Category
+                imageUri={require('../assets/images/robot-dev.png')}
+                name="Robot">
+              </Category>
+              <Category
+                imageUri={require('../assets/images/robot-dev.png')}
+                name="Robot 1">
+              </Category>
+              <Category
+                imageUri={require('../assets/images/robot-dev.png')}
+                name="Robot 2">
+              </Category>
+              <Category
+                imageUri={require('../assets/images/robot-dev.png')}
+                name="Robot 3">
+              </Category>
+              <Category
+                imageUri={require('../assets/images/robot-dev.png')}
+                name="Robot 4">
+              </Category>
+            </ScrollView>
+          </View>
+        {/* </ScrollView>   
+
+        <ScrollView> */}
         
-          <View style={styles.button}>
+          <View style={styles.buttonFirstRow}>
             <View style={styles.buttonContainer}>
-              <Button onPress={this._onPress} title="Button 1" color="#FFFFFF" accessibilityLabel="Tap on Me" />
+              <FontAwesome name="pencil" size={40} color="white" />
+              <Button 
+                onPress={() => this.props.navigation.navigate('Links')} 
+                title="Study" color="#FFFFFF" accessibilityLabel="Tap on Me" titleStyle ={{fontFamily: 'MinionPro-BoldDisp'}} />
             </View>
             <View style={styles.buttonContainer}>
-              <Button onPress={this._onPress} title="Button 2" color="#FFFFFF" accessibilityLabel="Tap on Me" />
+              <MaterialIcons name="local-dining" size={42} color="white" />
+              <Button 
+                onPress={() => this.props.navigation.navigate('Dining')} 
+                title="Dining" color="#FFFFFF" accessibilityLabel="Tap on Me" />
             </View>
             <View style={styles.buttonContainer}>
-              <Button onPress={this._onPress} title="Button 3" color="#FFFFFF" accessibilityLabel="Tap on Me" />
-            </View>
-          </View>
-
-          <View style={styles.button}>
-            <View style={styles.buttonContainer}>
-              <Button onPress={this._onPress} title="Button 4" color="#FFFFFF" accessibilityLabel="Tap on Me" />
-            </View>
-            <View style={styles.buttonContainer}>
-              <Button onPress={this._onPress} title="Button 5" color="#FFFFFF" accessibilityLabel="Tap on Me" />
-            </View>
-            <View style={styles.buttonContainer}>
-              <Button onPress={this._onPress} title="Button 6" color="#FFFFFF" accessibilityLabel="Tap on Me" />
+              <Button 
+                onPress={() => this.props.navigation.navigate('Links')} 
+                title="Campus Map" color="#FFFFFF" accessibilityLabel="Tap on Me" />
             </View>
           </View>
 
           <View style={styles.button}>
             <View style={styles.buttonContainer}>
-              <Button onPress={this._onPress} title="Button 7" color="#FFFFFF" accessibilityLabel="Tap on Me" />
+              <FontAwesome name="calendar" size={40} color="white" />
+              <Button 
+                onPress={() => this.props.navigation.navigate('Links')} 
+                title="Calendar" color="#FFFFFF" accessibilityLabel="Tap on Me" />
             </View>
             <View style={styles.buttonContainer}>
-              <Button onPress={this._onPress} title="Button 8" color="#FFFFFF" accessibilityLabel="Tap on Me" />
+              <MaterialCommunityIcons name="calendar-clock" size={42} color="white" />
+              <Button 
+                onPress={() => this.props.navigation.navigate('Links')} 
+                title="Booking" color="#FFFFFF" accessibilityLabel="Tap on Me" />
             </View>
             <View style={styles.buttonContainer}>
+              <MaterialIcons name="local-laundry-service" size={42} color="white" />
+              <Button 
+                onPress={() => this.props.navigation.navigate('Links')} 
+                title="Laundry" color="#FFFFFF" accessibilityLabel="Tap on Me" />
+            </View>
+          </View>
+
+          <View style={styles.button}>
+            <View style={styles.buttonContainer}>
+              <MaterialIcons name="people-outline" size={42} color="white" />
+              <Button 
+                onPress={() => this.props.navigation.navigate('Links')} 
+                title="Clubs" color="#FFFFFF" accessibilityLabel="Tap on Me" />
+            </View>
+            <View style={styles.buttonContainer}>
+              <FontAwesome name="building-o" size={40} color="white" />
+              <Button 
+                onPress={() => this.props.navigation.navigate('Links')} 
+                title="Hours of Operation" color="#FFFFFF" accessibilityLabel="Tap on Me" />
+            </View>
+            <View style={styles.buttonContainer}>
+              <Feather name="book" size={40} color="white" />
+              <Button
+                onPress={() => this.props.navigation.navigate('Links')} 
+                title="Catalogue" color="#FFFFFF" accessibilityLabel="Tap on Me"/>
+            </View>
+          </View>
+
+          <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <Button
-              onPress={() => this.props.navigation.navigate('Links')} title="Button 9" color="#FFFFFF" accessibilityLabel="Tap on Me"/>
-            </View>
+              title="Go to Dining"
+              onPress={() => this.props.navigation.navigate('Dining')}
+            />
           </View>
-
-        </ScrollView>
+         
+          </ScrollView>
 
 
         <View style={styles.tabBarInfoContainer}>
           <Text style={[styles.tabBarInfoText, styles.navigationFilename]}>WPI</Text>
-        </View>
+        </View> 
       </View >
 
     );
   }
-  
-
-  _maybeRenderDevelopmentModeWarning() {
-    if (__DEV__) {
-      const learnMoreButton = (
-        <Text onPress={this._handleLearnMorePress} style={styles.helpLinkText}>
-          Learn more
-        </Text>
-      );
-
-      return (
-        <Text style={styles.developmentModeText}>
-          Development mode is enabled, your app will be slower but you can use useful development
-          tools. {learnMoreButton}
-        </Text>
-      );
-    } else {
-      return (
-        <Text style={styles.developmentModeText}>
-          You are not in development mode, your app will run at full speed.
-        </Text>
-      );
-    }
-  }
-
-  _handleLearnMorePress = () => {
-    WebBrowser.openBrowserAsync('https://docs.expo.io/versions/latest/guides/development-mode');
-  };
-
-  _handleHelpPress = () => {
-    WebBrowser.openBrowserAsync(
-      'https://docs.expo.io/versions/latest/guides/up-and-running.html#can-t-see-your-changes'
-    );
-  };
 }
 
 const RootStack = createStackNavigator(
   {
     Home: HomeScreen,
     Links: LinksScreen,
+    Dining: {screen: DiningScreen},
   },
   {
     initialRouteName: 'Home',
   }
 );
 
-
 const AppContainer = createAppContainer(RootStack);
 
-class App extends React.Component {
+ class App extends React.Component {
   render() {
     return <AppContainer />;
   }
 }
-
-
 
 const styles = StyleSheet.create({
   container: {
@@ -170,6 +172,14 @@ const styles = StyleSheet.create({
   button: {
     flex: 1,
     marginTop: 20,
+    marginLeft: 20,
+    marginRight: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  buttonFirstRow: {
+    flex: 1,
+    marginTop: 25,
     marginLeft: 20,
     marginRight: 20,
     flexDirection: 'row',
@@ -246,17 +256,6 @@ const styles = StyleSheet.create({
     fontFamily: 'MinionPro-BoldDisp',
   },
   navigationFilename: {
-    marginTop: 20,
-  },
-  helpContainer: {
-    marginTop: 15,
-    alignItems: 'center',
-  },
-  helpLink: {
-    paddingVertical: 15,
-  },
-  helpLinkText: {
-    fontSize: 14,
-    color: '#2e78b7',
+    marginTop: 30,
   },
 });

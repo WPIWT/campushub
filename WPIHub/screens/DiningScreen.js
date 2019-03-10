@@ -1,14 +1,13 @@
 import React from 'react';
-import { ExpoConfigView } from '@expo/samples';
+import { Button, View, Text } from 'react-native';
+import { createStackNavigator, createAppContainer } from 'react-navigation'; // Version can be specified in package.json
 
 export default class DiningScreen extends React.Component {
-  static navigationOptions = {
-    title: 'app.json',
-  };
-
   render() {
-    /* Go ahead and delete ExpoConfigView and replace it with your
-     * content, we just wanted to give you a quick view of your config */
-    return <ExpoConfigView />;
+    return (
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Text>Dining Screen</Text>
+      </View>
+    );
   }
 }
